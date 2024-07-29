@@ -1,0 +1,168 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 10001000        DCD              0x10001000  ;
+    6 00000004         
+    7 00000004 00000000        DCD              Reset_Handler ; reset vector (;
+                                                             is a comment)
+    8 00000008                 ALIGN
+    9 00000008                 AREA             mycode,CODE,READONLY
+   10 00000000                 ENTRY
+   11 00000000                 EXPORT           Reset_Handler
+   12 00000000         
+   13 00000000         Reset_Handler
+   14 00000000         ;LDR R0,=N
+   15 00000000         ;LDR R1,[R0]
+   16 00000000         ;LDR R2,=0XA1243140
+   17 00000000 F04F 0305       MOV              R3,#5
+   18 00000004 4806            LDR              R0,=N
+   19 00000006 4907            LDR              R1,=DST
+   20 00000008 F850 2B04 
+                       BACK    LDR              R2,[R0],#4  ; post indexing:com
+                                                            bines LDR R2,[R0] a
+                                                            nd ADD R0,#4
+   21 0000000C F841 2B04       STR              R2,[R1],#4  ;combines LDR R2,[R
+                                                            1] and ADD R1,#4
+   22 00000010         
+   23 00000010 6802            LDR              R2,[R0]
+   24 00000012 600A            STR              R2,[R1]
+   25 00000014         
+   26 00000014 F1A3 0301       SUB              R3,#1
+   27 00000018 2B00            CMP              R3,#0
+   28 0000001A D1F5            BNE              BACK        ;BRANCH WHEN IT IS 
+                                                            NOT EQUAL, BACK IS 
+                                                            USER DEFINED LABEL
+   29 0000001C         STOP
+   30 0000001C E7FE            B                STOP        ;stops execution he
+                                                            re, branching state
+                                                            ment (here uncondit
+                                                            ional branching)
+   31 0000001E         ;data defined (stores in code memory only) 
+   32 0000001E         
+   33 0000001E         ;N DCD 0X12345678,0x6A,0X234,0X49C,0XA13BC 
+   34 0000001E 00 00 00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   35 00000000 12345678 
+              0000006A 
+              00000234 
+              0000049C 
+              000A13BC N       DCD              0X12345678,0x6A,0X234,0X49C,0XA
+13BC
+   36 00000014 00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 DST     DCD              0,0,0,0,0
+   37 00000028         
+   38 00000028                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=ex1.d -o
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+ex1.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NXP\
+LPC17xx --predefine="__EVAL SETA 1" --list=ex1.lst ex1.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file ex1.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file ex1.asm
+   Uses
+      At line 2 in file ex1.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+BACK 00000008
+
+Symbol: BACK
+   Definitions
+      At line 20 in file ex1.asm
+   Uses
+      At line 28 in file ex1.asm
+Comment: BACK used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 13 in file ex1.asm
+   Uses
+      At line 7 in file ex1.asm
+      At line 11 in file ex1.asm
+
+STOP 0000001C
+
+Symbol: STOP
+   Definitions
+      At line 29 in file ex1.asm
+   Uses
+      At line 30 in file ex1.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 9 in file ex1.asm
+   Uses
+      None
+Comment: mycode unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DST 00000014
+
+Symbol: DST
+   Definitions
+      At line 36 in file ex1.asm
+   Uses
+      At line 19 in file ex1.asm
+Comment: DST used once
+N 00000000
+
+Symbol: N
+   Definitions
+      At line 35 in file ex1.asm
+   Uses
+      At line 18 in file ex1.asm
+Comment: N used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 34 in file ex1.asm
+   Uses
+      None
+Comment: mydata unused
+3 symbols
+342 symbols in table
