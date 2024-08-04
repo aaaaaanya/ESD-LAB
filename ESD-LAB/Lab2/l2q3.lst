@@ -1,0 +1,185 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;3)Write an assembly language program to copy data from 
+                       one memory block to another when the memory blocks are o
+                       verlapping
+    2 00000000                 AREA             RESET, DATA, READONLY
+    3 00000000                 EXPORT           __Vectors
+    4 00000000         
+    5 00000000         __Vectors
+    6 00000000 10001000        DCD              0x10001000
+    7 00000004 00000000        DCD              Reset_Handler
+    8 00000008         
+    9 00000008                 ALIGN
+   10 00000008                 AREA             mycode, CODE, READONLY
+   11 00000000                 ENTRY
+   12 00000000                 EXPORT           Reset_Handler
+   13 00000000         
+   14 00000000         Reset_Handler
+   15 00000000 F04F 0305       MOV              R3,#5
+   16 00000004 4805            LDR              R0,=(N+(SIZE-1)*4)
+   17 00000006 4906            LDR              R1,=(N+(SIZE-1)*4+SHIFTS*4)
+   18 00000008         BACK
+   19 00000008 F850 2904       LDR              R2,[R0],#-4
+   20 0000000C F841 2904       STR              R2,[R1],#-4
+   21 00000010 F1A3 0301       SUB              R3,#1       ;Subtracts the valu
+                                                            e of R3 by a by val
+                                                            ue of 1
+   22 00000014 2B00            CMP              R3,#0       ;Keeps comparing th
+                                                            e value of R3 with 
+                                                            0
+   23 00000016 D1F7            BNE              BACK        ;BNE--> Branch when
+                                                             Not equal, so it b
+                                                            reaks if R3 becomes
+                                                             equal to 0,as long
+                                                             as not equal it ke
+                                                            eps looping, the lo
+                                                            op breaks when Z fl
+                                                            ag becomes 1 from 0
+                                                            , the Z flag can be
+                                                             seen under xPSR
+   24 00000018         ;BEQ--> Branch when equal
+   25 00000018         
+   26 00000018         STOP
+   27 00000018 E7FE            B                STOP
+   28 0000001A         
+   29 0000001A 00000005 
+                       SIZE    EQU              5
+   30 0000001A 00000002 
+                       SHIFTS  EQU              2
+   31 0000001A         
+   32 0000001A 00 00 00000010 
+              00000018         AREA             mydata, DATA, READWRITE
+   33 00000000 12345678 
+              0000006A 
+              00000234 
+              0000049C 
+              000A13BC N       DCD              0x12345678,0x6A,0x234,0x49C,0xA
+13BC
+   34 00000014         
+   35 00000014                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=l2q3.d -
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+ol2q3.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NX
+P\LPC17xx --predefine="__EVAL SETA 1" --list=l2q3.lst l2q3.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 2 in file l2q3.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 5 in file l2q3.asm
+   Uses
+      At line 3 in file l2q3.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+BACK 00000008
+
+Symbol: BACK
+   Definitions
+      At line 18 in file l2q3.asm
+   Uses
+      At line 23 in file l2q3.asm
+Comment: BACK used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 14 in file l2q3.asm
+   Uses
+      At line 7 in file l2q3.asm
+      At line 12 in file l2q3.asm
+
+STOP 00000018
+
+Symbol: STOP
+   Definitions
+      At line 26 in file l2q3.asm
+   Uses
+      At line 27 in file l2q3.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 10 in file l2q3.asm
+   Uses
+      None
+Comment: mycode unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+N 00000000
+
+Symbol: N
+   Definitions
+      At line 33 in file l2q3.asm
+   Uses
+      At line 16 in file l2q3.asm
+      At line 17 in file l2q3.asm
+
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 32 in file l2q3.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+SHIFTS 00000002
+
+Symbol: SHIFTS
+   Definitions
+      At line 30 in file l2q3.asm
+   Uses
+      At line 17 in file l2q3.asm
+Comment: SHIFTS used once
+SIZE 00000005
+
+Symbol: SIZE
+   Definitions
+      At line 29 in file l2q3.asm
+   Uses
+      At line 16 in file l2q3.asm
+      At line 17 in file l2q3.asm
+
+2 symbols
+343 symbols in table
