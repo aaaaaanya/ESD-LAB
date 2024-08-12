@@ -1,0 +1,176 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Write a program to subtract two 128 bit numbers
+    2 00000000                 AREA             RESET,DATA,READONLY
+    3 00000000                 EXPORT           __Vectors
+    4 00000000         
+    5 00000000         __Vectors
+    6 00000000 10001000        DCD              0X10001000
+    7 00000004 00000000        DCD              Reset_Handler
+    8 00000008         
+    9 00000008                 ALIGN
+   10 00000008                 AREA             mycode, CODE, READONLY
+   11 00000000                 ENTRY
+   12 00000000                 EXPORT           Reset_Handler
+   13 00000000         
+   14 00000000         Reset_Handler
+   15 00000000 F04F 0004       MOV              R0,#4
+   16 00000004 4911            LDR              R1,=N
+   17 00000006 4A12            LDR              R2,=M
+   18 00000008 4D12            LDR              R5,=SUM
+   19 0000000A F1BA 0F00       CMP              R10,#0      ;to make carry flag
+                                                             c=1
+   20 0000000E         
+   21 0000000E         ;SUM IN R3
+   22 0000000E F851 6B04 
+                       BACK    LDR              R6,[R1],#4
+   23 00000012 F852 7B04       LDR              R7,[R2],#4
+   24 00000016 EB76 0307       SBCS             R3,R6,R7
+   25 0000001A F845 3B04       STR              R3,[R5],#4
+   26 0000001E F1A0 0001       SUB              R0,#1
+   27 00000022 F090 0F00       TEQ              R0,#0
+   28 00000026         
+   29 00000026         ;using ADCS OR CMP updates carry flag c to 1
+   30 00000026         ;hence we use TEQ (Test if equal) since it doesnt touch 
+                       carry flag, it performs xor operation
+   31 00000026 D1F2            BNE              BACK
+   32 00000028         
+   33 00000028         
+   34 00000028         
+   35 00000028         
+   36 00000028         STOP
+   37 00000028 E7FE            B                STOP
+   38 0000002A         
+   39 0000002A         ;N DCD 0x12345678,0x6A,0x234,0x49C,
+   40 0000002A 00 00 00000005 
+              00000006 
+              00000007 
+              0000000A N       DCD              5,6,7,0XA
+   41 0000003C 00000001 
+              00000008 
+              00000003 
+              00000004 M       DCD              1,8,3,4
+   42 0000004C         
+   43 0000004C 00000000 
+              00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   44 00000000 00000000 
+              00000000 
+              00000000 SUM     DCD              0,0,0
+   45 0000000C                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=l3q3.d -
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+ol3q3.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NX
+P\LPC17xx --predefine="__EVAL SETA 1" --list=l3q3.lst l3q3.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 2 in file l3q3.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 5 in file l3q3.asm
+   Uses
+      At line 3 in file l3q3.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+BACK 0000000E
+
+Symbol: BACK
+   Definitions
+      At line 22 in file l3q3.asm
+   Uses
+      At line 31 in file l3q3.asm
+Comment: BACK used once
+M 0000003C
+
+Symbol: M
+   Definitions
+      At line 41 in file l3q3.asm
+   Uses
+      At line 17 in file l3q3.asm
+Comment: M used once
+N 0000002C
+
+Symbol: N
+   Definitions
+      At line 40 in file l3q3.asm
+   Uses
+      At line 16 in file l3q3.asm
+Comment: N used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 14 in file l3q3.asm
+   Uses
+      At line 7 in file l3q3.asm
+      At line 12 in file l3q3.asm
+
+STOP 00000028
+
+Symbol: STOP
+   Definitions
+      At line 36 in file l3q3.asm
+   Uses
+      At line 37 in file l3q3.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 10 in file l3q3.asm
+   Uses
+      None
+Comment: mycode unused
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+SUM 00000000
+
+Symbol: SUM
+   Definitions
+      At line 44 in file l3q3.asm
+   Uses
+      At line 18 in file l3q3.asm
+Comment: SUM used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 43 in file l3q3.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+343 symbols in table
