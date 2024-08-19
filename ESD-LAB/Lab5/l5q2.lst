@@ -1,0 +1,163 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Write an assembly program to find the factorial of a un
+                       signed number using recursion
+    2 00000000                 AREA             RESET, DATA, READONLY
+    3 00000000                 EXPORT           __Vectors
+    4 00000000                 EXPORT           Reset_Handler
+    5 00000000         
+    6 00000000         __Vectors
+    7 00000000 10001000        DCD              0x10001000
+    8 00000004 00000000        DCD              Reset_Handler
+    9 00000008         
+   10 00000008                 ALIGN
+   11 00000008         
+   12 00000008                 AREA             mycode, CODE, READONLY
+   13 00000000                 ENTRY
+   14 00000000         
+   15 00000000         
+   16 00000000         Reset_Handler
+   17 00000000 490A            LDR              R1, =N
+   18 00000002 6809            LDR              R1, [R1]
+   19 00000004 F000 F806       BL               FACT
+   20 00000008         
+   21 00000008         
+   22 00000008 4809            LDR              R0, =RESULT
+   23 0000000A 6001            STR              R1, [R0]
+   24 0000000C         
+   25 0000000C         STOP
+   26 0000000C E7FE            B                STOP
+   27 0000000E         
+   28 0000000E 00 00 00000005 
+                       N       DCD              5
+   29 00000014         
+   30 00000014         FACT
+   31 00000014 2901            CMP              R1,#1
+   32 00000016 D004            BEQ              EXIT
+   33 00000018 B502            PUSH             {R1,LR}
+   34 0000001A F1A1 0101       SUB              R1,#1
+   35 0000001E F7FF FFF9       BL               FACT
+   36 00000022         
+   37 00000022         EXIT
+   38 00000022 E8BD 4004       POP              {R2,LR}
+   39 00000026 FB01 F102       MUL              R1,R2
+   40 0000002A 4770            BX               LR
+   41 0000002C         
+   42 0000002C         
+   43 0000002C         
+   44 0000002C 00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   45 00000000 00000000 
+                       RESULT  DCD              0
+   46 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=l5q2.d -
+ol5q2.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NX
+P\LPC17xx --predefine="__EVAL SETA 1" --list=l5q2.lst l5q2.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 2 in file l5q2.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 6 in file l5q2.asm
+   Uses
+      At line 3 in file l5q2.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+EXIT 00000022
+
+Symbol: EXIT
+   Definitions
+      At line 37 in file l5q2.asm
+   Uses
+      At line 32 in file l5q2.asm
+Comment: EXIT used once
+FACT 00000014
+
+Symbol: FACT
+   Definitions
+      At line 30 in file l5q2.asm
+   Uses
+      At line 19 in file l5q2.asm
+      At line 35 in file l5q2.asm
+
+N 00000010
+
+Symbol: N
+   Definitions
+      At line 28 in file l5q2.asm
+   Uses
+      At line 17 in file l5q2.asm
+Comment: N used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 16 in file l5q2.asm
+   Uses
+      At line 4 in file l5q2.asm
+      At line 8 in file l5q2.asm
+
+STOP 0000000C
+
+Symbol: STOP
+   Definitions
+      At line 25 in file l5q2.asm
+   Uses
+      At line 26 in file l5q2.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 12 in file l5q2.asm
+   Uses
+      None
+Comment: mycode unused
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESULT 00000000
+
+Symbol: RESULT
+   Definitions
+      At line 45 in file l5q2.asm
+   Uses
+      At line 22 in file l5q2.asm
+Comment: RESULT used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 44 in file l5q2.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+343 symbols in table

@@ -1,0 +1,192 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Write an assembly program to sort an array using select
+                       ion sort
+    2 00000000                 AREA             RESET, DATA, READONLY
+    3 00000000                 EXPORT           __Vectors
+    4 00000000                 EXPORT           Reset_Handler
+    5 00000000         
+    6 00000000         __Vectors
+    7 00000000 10001000        DCD              0x10001000
+    8 00000004 00000000        DCD              Reset_Handler
+    9 00000008         
+   10 00000008                 ALIGN
+   11 00000008         
+   12 00000008                 AREA             mycode, CODE, READONLY
+   13 00000000                 ENTRY
+   14 00000000         
+   15 00000000         
+   16 00000000         Reset_Handler
+   17 00000000         
+   18 00000000 F8DF A06C       LDR              R10,=N
+   19 00000004 481B            LDR              R0,=RESULT
+   20 00000006 F8C0 A000       STR              R10,[R0]
+   21 0000000A F04F 0400       MOV              R4,#0
+   22 0000000E         
+   23 0000000E         OUTER
+   24 0000000E         
+   25 0000000E F850 2B04       LDR              R2,[R0],#4  ;OUTER LOOP
+   26 00000012 F104 0401       ADD              R4,#1
+   27 00000016 F1C4 050A       RSB              R5,R4,#10
+   28 0000001A F04F 0600       MOV              R6,#0
+   29 0000001E         ;MOV R6,#4
+   30 0000001E         
+   31 0000001E         INNER
+   32 0000001E         
+   33 0000001E         
+   34 0000001E 5983            LDR              R3,[R0,R6]
+   35 00000020 F106 0604       ADD              R6,#4
+   36 00000024 429A            CMP              R2,R3
+   37 00000026 BF88 461A       MOVHI            R2,R3
+   38 0000002A F1A5 0501       SUB              R5,#1
+   39 0000002E 2D00            CMP              R5,#0
+   40 00000030         ;STREQ R3,[R1],#4 ;here we gotta swap
+   41 00000030 BF01 4607       MOVEQ            R7,R0
+   42 00000034 EB00 0806       ADDEQ            R8,R0,R6
+   43 00000038 F8D7 B000       LDREQ            R11,[R7]
+   44 0000003C 603A            STREQ            R2,[R7]
+   45 0000003E BF08 F8C8 
+              B000             STREQ            R11,[R8]
+   46 00000044         ;MOVEQ R9,R7
+   47 00000044         ;MOVEQ R7,R8
+   48 00000044         ;MOVEQ R8,R9
+   49 00000044         
+   50 00000044 D0E3            BEQ              OUTER
+   51 00000046 E7EA            B                INNER
+   52 00000048         
+   53 00000048         
+   54 00000048         
+   55 00000048         
+   56 00000048         
+   57 00000048 00000005 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+              00000006 
+              00000007 
+              00000002 
+              00000012 
+              00000048 
+              0000001E 
+              00000003 
+              0000000C 
+              00000001 N       DCD              5,6,7,2,18,72,30,3,12,1
+   58 00000070         
+   59 00000070 00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   60 00000000 00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 RESULT  DCD              0,0,0,0,0,0,0,0,0,0
+   61 00000028                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=l5q1.d -
+ol5q1.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NX
+P\LPC17xx --predefine="__EVAL SETA 1" --list=l5q1.lst l5q1.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 2 in file l5q1.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 6 in file l5q1.asm
+   Uses
+      At line 3 in file l5q1.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+INNER 0000001E
+
+Symbol: INNER
+   Definitions
+      At line 31 in file l5q1.asm
+   Uses
+      At line 51 in file l5q1.asm
+Comment: INNER used once
+N 00000048
+
+Symbol: N
+   Definitions
+      At line 57 in file l5q1.asm
+   Uses
+      At line 18 in file l5q1.asm
+Comment: N used once
+OUTER 0000000E
+
+Symbol: OUTER
+   Definitions
+      At line 23 in file l5q1.asm
+   Uses
+      At line 50 in file l5q1.asm
+Comment: OUTER used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 16 in file l5q1.asm
+   Uses
+      At line 4 in file l5q1.asm
+      At line 8 in file l5q1.asm
+
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 12 in file l5q1.asm
+   Uses
+      None
+Comment: mycode unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESULT 00000000
+
+Symbol: RESULT
+   Definitions
+      At line 60 in file l5q1.asm
+   Uses
+      At line 19 in file l5q1.asm
+Comment: RESULT used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 59 in file l5q1.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+342 symbols in table
