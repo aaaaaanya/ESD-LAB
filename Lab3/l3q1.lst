@@ -1,0 +1,156 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         
+    2 00000000         ;Write a program to add ten 32 bit numbers stored in cod
+                       e segment and store the result in data segment
+    3 00000000                 AREA             RESET,DATA,READONLY
+    4 00000000                 EXPORT           __Vectors
+    5 00000000         
+    6 00000000         __Vectors
+    7 00000000 10001000        DCD              0X10001000
+    8 00000004 00000000        DCD              Reset_Handler
+    9 00000008         
+   10 00000008                 ALIGN
+   11 00000008                 AREA             mycode, CODE, READONLY
+   12 00000000                 ENTRY
+   13 00000000                 EXPORT           Reset_Handler
+   14 00000000         
+   15 00000000         Reset_Handler
+   16 00000000 4811            LDR              R0,=N
+   17 00000002 F04F 010A       MOV              R1,#10
+   18 00000006 4D11            LDR              R5,=SUM
+   19 00000008         ;LDR R3,=REM
+   20 00000008         LOOP
+   21 00000008 F850 4B04       LDR              R4,[R0],#4
+   22 0000000C 1912            ADDS             R2,R4
+   23 0000000E F143 0300       ADC              R3,#0
+   24 00000012 3901            SUBS             R1,#1
+   25 00000014 D1F8            BNE              LOOP
+   26 00000016         
+   27 00000016 F845 2B04       STR              R2,[R5],#4
+   28 0000001A 602B            STR              R3,[R5]
+   29 0000001C         
+   30 0000001C         
+   31 0000001C         
+   32 0000001C         STOP
+   33 0000001C E7FE            B                STOP
+   34 0000001E         
+   35 0000001E 00 00 00000001 
+              00000002 
+              00000003 
+              00000004 
+              00000005 
+              00000006 
+              00000007 
+              00000008 
+              00000009 
+              0000000A N       DCD              1,2,3,4,5,6,7,8,9,10
+   36 00000048         
+   37 00000048 00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   38 00000000 00000000 
+              00000000 SUM     DCD              0,0
+   39 00000008         ;REM DCD 0
+   40 00000008                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=l3q1.d -
+ol3q1.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NX
+P\LPC17xx --predefine="__EVAL SETA 1" --list=l3q1.lst l3q1.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 3 in file l3q1.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 6 in file l3q1.asm
+   Uses
+      At line 4 in file l3q1.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+LOOP 00000008
+
+Symbol: LOOP
+   Definitions
+      At line 20 in file l3q1.asm
+   Uses
+      At line 25 in file l3q1.asm
+Comment: LOOP used once
+N 00000020
+
+Symbol: N
+   Definitions
+      At line 35 in file l3q1.asm
+   Uses
+      At line 16 in file l3q1.asm
+Comment: N used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 15 in file l3q1.asm
+   Uses
+      At line 8 in file l3q1.asm
+      At line 13 in file l3q1.asm
+
+STOP 0000001C
+
+Symbol: STOP
+   Definitions
+      At line 32 in file l3q1.asm
+   Uses
+      At line 33 in file l3q1.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 11 in file l3q1.asm
+   Uses
+      None
+Comment: mycode unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+SUM 00000000
+
+Symbol: SUM
+   Definitions
+      At line 38 in file l3q1.asm
+   Uses
+      At line 18 in file l3q1.asm
+Comment: SUM used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 37 in file l3q1.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+342 symbols in table

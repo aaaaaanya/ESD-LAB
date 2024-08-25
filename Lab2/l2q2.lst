@@ -1,0 +1,188 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Reverse an array of ten 32 bit numbers in the memory.
+    2 00000000         
+    3 00000000                 AREA             RESET, DATA, READONLY
+    4 00000000                 EXPORT           __Vectors
+    5 00000000         
+    6 00000000         __Vectors
+    7 00000000 10001000        DCD              0x10001000
+    8 00000004 00000000        DCD              Reset_Handler
+    9 00000008         
+   10 00000008                 ALIGN
+   11 00000008                 AREA             mycode, CODE, READONLY
+   12 00000000                 ENTRY
+   13 00000000                 EXPORT           Reset_Handler
+   14 00000000         
+   15 00000000         Reset_Handler
+   16 00000000 F04F 030A       MOV              R3,#10
+   17 00000004 4805            LDR              R0,=(N+(SIZE-1)*4) ;will point 
+                                                            to the last number 
+                                                            in the register
+   18 00000006 4906            LDR              R1,=(N+(SIZE-1)*4+SHIFTS*4) ;wi
+                                                            ll point to the las
+                                                            t no. + 2 blocks af
+                                                            ter that
+   19 00000008         BACK
+   20 00000008 F850 2904       LDR              R2,[R0],#-4
+   21 0000000C F841 2B04       STR              R2,[R1],#4
+   22 00000010 F1A3 0301       SUB              R3,#1       ;Subtracts the valu
+                                                            e of R3 by a by val
+                                                            ue of 1
+   23 00000014 2B00            CMP              R3,#0       ;Keeps comparing th
+                                                            e value of R3 with 
+                                                            0
+   24 00000016 D1F7            BNE              BACK        ;BNE--> Branch when
+                                                             Not equal, so it b
+                                                            reaks if R3 becomes
+                                                             equal to 0,as long
+                                                             as not equal it ke
+                                                            eps looping
+   25 00000018         
+   26 00000018         
+   27 00000018         STOP
+   28 00000018 E7FE            B                STOP
+   29 0000001A         
+   30 0000001A 0000000A 
+                       SIZE    EQU              10
+   31 0000001A 00000001 
+                       SHIFTS  EQU              1
+   32 0000001A         
+   33 0000001A 00 00 00000024 
+              00000028         AREA             mydata, DATA, READWRITE
+   34 00000000 00000001 
+              00000002 
+              00000003 
+              00000004 
+              00000005 
+              00000006 
+              00000007 
+              00000008 
+              00000009 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+              0000000A N       DCD              1,2,3,4,5,6,7,8,9,10
+   35 00000028                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=l2q2.d -
+ol2q2.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NX
+P\LPC17xx --predefine="__EVAL SETA 1" --list=l2q2.lst l2q2.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 3 in file l2q2.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 6 in file l2q2.asm
+   Uses
+      At line 4 in file l2q2.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+BACK 00000008
+
+Symbol: BACK
+   Definitions
+      At line 19 in file l2q2.asm
+   Uses
+      At line 24 in file l2q2.asm
+Comment: BACK used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 15 in file l2q2.asm
+   Uses
+      At line 8 in file l2q2.asm
+      At line 13 in file l2q2.asm
+
+STOP 00000018
+
+Symbol: STOP
+   Definitions
+      At line 27 in file l2q2.asm
+   Uses
+      At line 28 in file l2q2.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 11 in file l2q2.asm
+   Uses
+      None
+Comment: mycode unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+N 00000000
+
+Symbol: N
+   Definitions
+      At line 34 in file l2q2.asm
+   Uses
+      At line 17 in file l2q2.asm
+      At line 18 in file l2q2.asm
+
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 33 in file l2q2.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+SHIFTS 00000001
+
+Symbol: SHIFTS
+   Definitions
+      At line 31 in file l2q2.asm
+   Uses
+      At line 18 in file l2q2.asm
+Comment: SHIFTS used once
+SIZE 0000000A
+
+Symbol: SIZE
+   Definitions
+      At line 30 in file l2q2.asm
+   Uses
+      At line 17 in file l2q2.asm
+      At line 18 in file l2q2.asm
+
+2 symbols
+343 symbols in table

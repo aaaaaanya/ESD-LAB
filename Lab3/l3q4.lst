@@ -1,0 +1,209 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;complete
+    2 00000000         ;Write an assembly language program to find LCM of two n
+                       umbers 
+    3 00000000                 AREA             RESET,DATA,READONLY
+    4 00000000                 EXPORT           __Vectors
+    5 00000000         
+    6 00000000         __Vectors
+    7 00000000 10001000        DCD              0X10001000
+    8 00000004 00000000        DCD              Reset_Handler
+    9 00000008         
+   10 00000008                 ALIGN
+   11 00000008                 AREA             mycode, CODE, READONLY
+   12 00000000                 ENTRY
+   13 00000000                 EXPORT           Reset_Handler
+   14 00000000         
+   15 00000000         Reset_Handler
+   16 00000000 490D            LDR              R1,=N
+   17 00000002 4A0E            LDR              R2,=M
+   18 00000004 6809            LDR              R1,[R1]     ;12
+   19 00000006 6812            LDR              R2,[R2]     ;30
+   20 00000008 F04F 0001       MOV              R0,#1       ;i
+   21 0000000C         ;finding lcm
+   22 0000000C         
+   23 0000000C         
+   24 0000000C         
+   25 0000000C FB01 F300 
+                       LOOP    MUL              R3,R1,R0
+   26 00000010 461D            MOV              R5,R3
+   27 00000012 4295    L2      CMP              R5,R2       ;division to get re
+                                                            mainder
+   28 00000014 D302            BLO              EXIT2
+   29 00000016 EBA5 0502       SUB              R5,R2
+   30 0000001A E7FA            B                L2
+   31 0000001C         ;R3 now has remainder
+   32 0000001C 2D00    EXIT2   CMP              R5,#0
+   33 0000001E D002            BEQ              EXIT
+   34 00000020 BF18 3001       ADDNE            R0,#1
+   35 00000024 E7F2            B                LOOP
+   36 00000026         
+   37 00000026         
+   38 00000026         
+   39 00000026         EXIT
+   40 00000026 FB01 F300       MUL              R3,R1,R0
+   41 0000002A 4C05            LDR              R4,=RESULT
+   42 0000002C 6023            STR              R3,[R4]
+   43 0000002E         
+   44 0000002E         STOP
+   45 0000002E E7FE            B                STOP
+   46 00000030         
+   47 00000030         ;N DCD 0x12345678,0x6A,0x234,0x49C,0xA13BC,0x69,0xA666,0
+                       x227799,0x98243231,0x01
+   48 00000030 0000000C 
+                       N       DCD              12
+   49 00000034 0000001E 
+                       M       DCD              30
+   50 00000038 00000000 
+              00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   51 00000000 00000000 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                       RESULT  DCD              0
+   52 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=l3q4.d -
+ol3q4.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NX
+P\LPC17xx --predefine="__EVAL SETA 1" --list=l3q4.lst l3q4.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 3 in file l3q4.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 6 in file l3q4.asm
+   Uses
+      At line 4 in file l3q4.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+EXIT 00000026
+
+Symbol: EXIT
+   Definitions
+      At line 39 in file l3q4.asm
+   Uses
+      At line 33 in file l3q4.asm
+Comment: EXIT used once
+EXIT2 0000001C
+
+Symbol: EXIT2
+   Definitions
+      At line 32 in file l3q4.asm
+   Uses
+      At line 28 in file l3q4.asm
+Comment: EXIT2 used once
+L2 00000012
+
+Symbol: L2
+   Definitions
+      At line 27 in file l3q4.asm
+   Uses
+      At line 30 in file l3q4.asm
+Comment: L2 used once
+LOOP 0000000C
+
+Symbol: LOOP
+   Definitions
+      At line 25 in file l3q4.asm
+   Uses
+      At line 35 in file l3q4.asm
+Comment: LOOP used once
+M 00000034
+
+Symbol: M
+   Definitions
+      At line 49 in file l3q4.asm
+   Uses
+      At line 17 in file l3q4.asm
+Comment: M used once
+N 00000030
+
+Symbol: N
+   Definitions
+      At line 48 in file l3q4.asm
+   Uses
+      At line 16 in file l3q4.asm
+Comment: N used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 15 in file l3q4.asm
+   Uses
+      At line 8 in file l3q4.asm
+      At line 13 in file l3q4.asm
+
+STOP 0000002E
+
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+Symbol: STOP
+   Definitions
+      At line 44 in file l3q4.asm
+   Uses
+      At line 45 in file l3q4.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 11 in file l3q4.asm
+   Uses
+      None
+Comment: mycode unused
+9 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESULT 00000000
+
+Symbol: RESULT
+   Definitions
+      At line 51 in file l3q4.asm
+   Uses
+      At line 41 in file l3q4.asm
+Comment: RESULT used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 50 in file l3q4.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+346 symbols in table
