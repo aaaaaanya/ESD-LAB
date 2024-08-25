@@ -1,2 +1,0 @@
-Dependencies for Project 'l3', Target 'Target 1': (DO NOT MODIFY !)
-F (.\l3q4.asm)(0x66B0690A)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx --list "l3q4.lst" --xref -o "l3q4.o" --depend "l3q4.d")
