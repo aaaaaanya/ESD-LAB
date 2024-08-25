@@ -1,0 +1,2 @@
+Dependencies for Project 'rough', Target 'Target 1': (DO NOT MODIFY !)
+F (.\rough_file.asm)(0x66CB3273)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx --list "rough_file.lst" --xref -o "rough_file.o" --depend "rough_file.d")

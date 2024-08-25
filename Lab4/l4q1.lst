@@ -1,0 +1,160 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         
+    2 00000000         ;Write an ARM assembly language program to covert 2-digi
+                       t hexadecimal number in ASCII
+    3 00000000         
+    4 00000000                 AREA             RESET,DATA,READONLY
+    5 00000000                 EXPORT           __Vectors
+    6 00000000         
+    7 00000000         __Vectors
+    8 00000000 10001000        DCD              0X10001000
+    9 00000004 00000000        DCD              Reset_Handler
+   10 00000008         
+   11 00000008                 ALIGN
+   12 00000008                 AREA             mycode,CODE,READONLY
+   13 00000000                 ENTRY
+   14 00000000                 EXPORT           Reset_Handler
+   15 00000000         
+   16 00000000         Reset_Handler
+   17 00000000         
+   18 00000000 480A            LDR              R0,=N
+   19 00000002 6800            LDR              R0,[R0]
+   20 00000004 490A            LDR              R1,=RESULT
+   21 00000006         
+   22 00000006 EA4F 1210       LSR              R2,R0,#4    ;to get 2
+   23 0000000A F000 030F       AND              R3,R0,#0xF  ; to get D
+   24 0000000E         
+   25 0000000E 2A0A            CMP              R2,#0XA     ;for the 2 digit
+   26 00000010 BF34 3230       ADDLO            R2,#0X30    ;48(in decimal)=30(
+                                                            in hex)
+   27 00000014 3237            ADDHS            R2,#0X37    ; 55(in decimal)=37
+                                                            
+   28 00000016         
+   29 00000016 2B0A            CMP              R3,#0XA     ; for the D digit
+   30 00000018 BF34 3330       ADDLO            R3,#0X30
+   31 0000001C 3337            ADDHS            R3,#0X37
+   32 0000001E         
+   33 0000001E EA4F 2402       LSL              R4,R2,#8    ; packing of digits
+                                                             into R4
+   34 00000022 441C            ADD              R4,R3
+   35 00000024         
+   36 00000024 600C            STR              R4,[R1]
+   37 00000026         
+   38 00000026         
+   39 00000026         
+   40 00000026         
+   41 00000026         
+   42 00000026         
+   43 00000026         
+   44 00000026         
+   45 00000026 E7FE    STOP    B                STOP
+   46 00000028         
+   47 00000028 0000002D 
+                       N       DCD              0x2D        ; 45 in decimal
+   48 0000002C         
+   49 0000002C 00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   50 00000000 00000000 
+                       RESULT  DCD              0
+   51 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=l4q1.d -
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+ol4q1.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NX
+P\LPC17xx --predefine="__EVAL SETA 1" --list=l4q1.lst l4q1.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 4 in file l4q1.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 7 in file l4q1.asm
+   Uses
+      At line 5 in file l4q1.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+N 00000028
+
+Symbol: N
+   Definitions
+      At line 47 in file l4q1.asm
+   Uses
+      At line 18 in file l4q1.asm
+Comment: N used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 16 in file l4q1.asm
+   Uses
+      At line 9 in file l4q1.asm
+      At line 14 in file l4q1.asm
+
+STOP 00000026
+
+Symbol: STOP
+   Definitions
+      At line 45 in file l4q1.asm
+   Uses
+      At line 45 in file l4q1.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 12 in file l4q1.asm
+   Uses
+      None
+Comment: mycode unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESULT 00000000
+
+Symbol: RESULT
+   Definitions
+      At line 50 in file l4q1.asm
+   Uses
+      At line 20 in file l4q1.asm
+Comment: RESULT used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 49 in file l4q1.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+341 symbols in table

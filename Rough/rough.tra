@@ -1,0 +1,19 @@
+*** Creating Trace Output File 'rough.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"rough_file.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M3 "rough_file.o" 
+--ro-base 0x00000000 --entry 0x00000000 --rw-base 0x10000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\rough.map" -o rough.axf### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'rough.axf'
+### ADS-LD Command File: 'rough.lnp'
+### Checking for dirty Components...
+### Creating CmdFile 'rough.lnp', Handle=0x00001658
+### Writing '.lnp' file
+### ADS-LD Command file 'rough.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.
