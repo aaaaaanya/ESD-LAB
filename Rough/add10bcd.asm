@@ -1,0 +1,85 @@
+;NOT WORKING
+;Write an assembly language program to add ten 2-digit BCD numbers available in the code
+;memory and store the BCD result in the RAM.
+	AREA RESET,DATA,READONLY
+	EXPORT __Vectors
+	
+__Vectors 
+	DCD 0X10001000
+	DCD Reset_Handler
+	
+	ALIGN 
+	AREA mycode,CODE,READONLY
+	ENTRY
+	EXPORT Reset_Handler
+	
+Reset_Handler
+	LDR R0,=N
+	MOV R1,#10
+	;LET SMOL SUM BE IN R2
+	
+	
+LOOP1	CMP R1,#0
+	BLEQ CARRY
+	MOVEQ R8,R2 ;R5 HAS THE LOWER VAL
+	BEQ LOOP2;IF GREATER THAN 10 ADD EXCESS IN R4
+	AND R3,R0,#0XF ;will have the smaller digit
+	ADD R2,R3
+	SUB R1,#1
+	B LOOP1
+	
+	MOV R1,#10
+LOOP2
+	CMP R1,#0
+	MOVEQ R2,R5
+	MOVEQ R5,#0
+	BLEQ CARRY
+	BEQ DOWN;R2 SHOULD HAVE THE STUFF AND R5 WILL GIVE THE OUTPUT
+	AND R6,R0,#0XF0
+	ADD R5,R6 ;will have large sum now
+	SUB R1,#1
+	B LOOP2
+	;R2,R8
+	
+DOWN 
+	;R5 HAS TH CARRY
+	LSR R9,R5,#12
+	LSR R10,R5,#8
+	;R8
+	ADD R11,R9,R10
+	ADD R11,R8
+	
+	
+	LDR R12,=DST
+	STR R11,[R12]
+	
+
+	
+
+	
+	
+	
+	
+	
+STOP B STOP	
+
+CARRY
+	;STUFF IS IN R2
+	CMP R2,#10
+	BLO DONE
+	SUB R2,#10
+	ADD R5,#1 ;R5=COUNTER, HAS THE CARRY
+	B CARRY
+DONE 
+	BX LR
+	
+
+
+N DCD 0x12,0x22,0x32,0x31,0x54,0x56,0x63,0x13,0x43,0x21
+
+
+	AREA mydata,DATA,READWRITE
+DST DCD 0
+;ans shud be 347
+
+	END
