@@ -1,4 +1,5 @@
 #include <LPC17xx.h>
+#include <stdio.h>
 
 int seven_seg[]={0x3F,0x06,0x5b,0x4f,0x66,0x60,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
 int flag1,flag2,temp1,temp2;
@@ -102,11 +103,13 @@ void LCD_Display_Expression(int A, char operator, int B)
 
 int main()
 {
+	int A,B,result;
+	char operator,result_str[5];
 	SystemInit();
 	SystemCoreClockUpdate();
 
 	// LCD initialization
-	LCD_Init();
+	
 
 	// Set GPIO directions for keypad and LCD
 	LPC_PINCON->PINSEL0 = 0;
@@ -118,7 +121,7 @@ int main()
 	LPC_GPIO2->FIODIR = 0XF<<10;  // P2.13 TO P2.10->ROWS
 
 	LPC_GPIO0->FIOPIN = 0;
-	char result_str[5]; // Buffer for result display
+	LCD_Init();
 
 	// Get inputs A, operator, B, and '='
 	for(idx = 0; idx < 4; idx++)
@@ -126,10 +129,9 @@ int main()
 		key_input[idx] = get_keypad_input();
 	}
 
-	int A = key_input[0];
-	int B = key_input[2];
-	char operator = (key_input[1] == 10) ? '+' : '-'; // Assuming key 10 is '+', and key 11 is '-'
-	int result;
+	A = key_input[0];
+	B = key_input[2];
+	operator = (key_input[1] == 10) ? '+' : '-'; // Assuming key 10 is '+', and key 11 is '-'
 
 	if(operator == '+')
 		result = A + B;
