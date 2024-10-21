@@ -1,3 +1,4 @@
+//works
 /*
 //Hardware mode displaying output
 ////ADC CHannel 5 at P1.31
