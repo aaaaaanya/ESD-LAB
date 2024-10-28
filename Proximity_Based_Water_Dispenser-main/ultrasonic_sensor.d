@@ -1,0 +1,9 @@
+ultrasonic_sensor.o: ultrasonic_sensor.c
+ultrasonic_sensor.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+ultrasonic_sensor.o: C:\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h
+ultrasonic_sensor.o: C:\Keil\ARM\CMSIS\Include\core_cm3.h
+ultrasonic_sensor.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+ultrasonic_sensor.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+ultrasonic_sensor.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+ultrasonic_sensor.o: C:\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h
+ultrasonic_sensor.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
