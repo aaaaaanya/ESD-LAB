@@ -21,9 +21,9 @@ int main(void)
 void pwm_init(void)
 {
 	LPC_SC->PCONP |= (1<<6); //PWM1 is powered
-	LPC_PINCON->PINSEL3 &= ~(0x0000C000); //cleared if any other
+	LPC_PINCON->PINSEL3 &= ~(0x0000C000); //cleared if any other for P1.23 
 	//functions are enabled
-	LPC_PINCON->PINSEL3 |= 0x00008000; //pwm1.4 is selected for the pin
+	LPC_PINCON->PINSEL3 |= 0x00008000; //pwm1.4 is selected for the pin // Function 2 //2<<14
 	//P1.23
 	LPC_PWM1->PR = 0x00000000; //Count frequency : Fpclk
 	LPC_PWM1->PCR = 0x00001000; //select PWM1 single edge
