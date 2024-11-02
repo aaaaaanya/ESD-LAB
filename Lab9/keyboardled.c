@@ -1,4 +1,8 @@
+//works but kinda weird
 
+//CNB to keyboard
+//CNa to LCD
+//cnc to decoder
 
 
 #include <LPC17xx.h>
