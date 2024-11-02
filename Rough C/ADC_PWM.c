@@ -10,7 +10,7 @@ void pwm_init(void)
 	LPC_PWM1->PCR=1<<12; //SINGLE EDGE AND ENABLE
 	LPC_PWM1->MCR=2; //reset and interrupt
 	LPC_PWM1->MR0=30000;
-	LPC_PWM1->MR4=20000;
+	LPC_PWM1->MR4=1;
 	LPC_PWM1->LER=0XFF;
 	LPC_PWM1->TCR=0X2;
 	LPC_PWM1->TCR=0X9;
@@ -24,11 +24,11 @@ int main()
 	SystemInit();
 	SystemCoreClockUpdate();
 	LPC_SC->PCONP|=1<<12|1<<15;
-	LPC_PINCON->PINSEL3|=3<<30;//FUNC3
+	LPC_PINCON->PINSEL3|=3<<30; //FUNC3
 	pwm_init();
 	while(1)	
 	{
-	  //for(j = 0; j<10000; j++); //doesnt make a diff
+	  //for(j = 0; j<10000; j++);
 		LPC_ADC->ADCR=1<<5|1<<21|1<<24;
 		
 		while(!( LPC_ADC->ADGDR >>31 == 0));
