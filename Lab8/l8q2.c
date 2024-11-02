@@ -1,6 +1,7 @@
 //works
 //Write a program to display 4-digit binary ring counter on the multiplexed sevensegment display.
-
+//CNA to led
+//CNB to 7 segment
 //not using timers here
 #include <LPC17xx.h>
 //All the 7th pins of each connector are connected to switch
